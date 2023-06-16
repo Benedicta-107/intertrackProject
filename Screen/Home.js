@@ -1,6 +1,8 @@
 //import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Image, Text, View, ScrollView, TextInput, TouchableOpacity, onPress, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Menu from './Menu';
 
 const categories = [
   {id: 1, name: 'Rice'},
@@ -10,6 +12,10 @@ const categories = [
   {id: 5, name: 'Vegetable Soup'},
   {id: 6, name: 'Smoothie'},
 ];
+
+const handlePress = (item) => {
+  console.log('Pressed category', item);
+};
 
 const renderCategory = ({ item }) => {
   return (
@@ -22,9 +28,8 @@ const renderCategory = ({ item }) => {
     </TouchableOpacity>
   );
 };
-const handlePress = (item) => {
-  console.log('Pressed category', item);
-};
+
+
 const offers = [
   {
     id: 1,
@@ -64,10 +69,24 @@ const offers = [
   },
 ];
 
-const renderOffers =({ item }) => {
+
+const renderOffers =({ item, navigation }) => {
+  //const navigation = useNavigation();
+  const handleOffers = () => {
+    console.log('Pressed offers', item);
+    // Navigate to the Menu screen with the selected item's ID
+    //navigation.navigate('Menu', { itemId: item.id });
+    navigation.navigate(Menu, { itemId: item.id});
+  };
+  
   return (
     <View style={{marginHorizontal: 10}}>
-      <Image source={{ uri: item.image}} style={{width: 100, height: 100, borderRadius: 15,}}/>
+      <TouchableOpacity onPress={handleOffers}>
+          <Image
+            source={{ uri: item.image }}
+            style={{ width: 100, height: 100, borderRadius: 15 }}
+          />
+        </TouchableOpacity>
       <View style={{flexDirection: 'row'}}>
       <Image source={{uri: item.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
       <Image source={{uri: item.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
@@ -89,10 +108,10 @@ const renderOffers =({ item }) => {
     </View>
   );
 };
-const handleOffers = (item) => {
-  console.log('Pressed offers', item);
-};
+
+
 const Home = () => {
+  const navigation = useNavigation();
   function renderSearch() {
     return (
       <View>
@@ -234,12 +253,19 @@ const Home = () => {
           {/* OFFERS */}
           <Text style={{color: '#1d8129', margin: 5, padding: 10, fontWeight: '500'}}>Today's Special Offers</Text>
 
-          <FlatList
+          {/* <FlatList
           data={offers}
           renderItem={renderOffers}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
+          /> */}
+          <FlatList
+            data={offers}
+            renderItem={({ item }) => renderOffers({ item, navigation })}
+            keyExtractor={(item) => item.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
           />
 
       {/* <StatusBar style="auto" /> */}

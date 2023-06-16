@@ -5,42 +5,44 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+//import { createStackNavigator } from '@react-navigation/stack';
 // import {HomeStack, CategoriesStack} from "./navigation";
 import Home from './Screen/Home';
 import Categories from './Screen/Categories'
 import Favourite from './Screen/Favourite';
 import Cart from './Screen/Cart';
 import Account from './Screen/Account'
+import Menu from './Screen/Menu';
 //import HomeStackScreen from './Screen/navigation/HomeStack';
 //import CategoriesStackScreen from './Screen/navigation/CategoriesStack';
+const Stack = createNativeStackNavigator(); 
+const HomeStackNavigator = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-const HomeStack = createNativeStackNavigator();
+function StackScreen() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Home' component={Home} />
+      <Stack.Screen name='Menu' component={Menu} />
+    </Stack.Navigator>
+  );
+};
+
+
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen name="Categories" component={Categories} />
-      <HomeStack.Screen name="Favourite" component={Favourite} />
-      <HomeStack.Screen name="Cart" component={Cart} />
-      <HomeStack.Screen name="Account" component={Account} />
-    </HomeStack.Navigator>
+    <HomeStackNavigator.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStackNavigator.Screen name="Home" component={StackScreen} />
+      <HomeStackNavigator.Screen name="Categories" component={Categories} />
+      <HomeStackNavigator.Screen name="Favourite" component={Favourite} />
+      <HomeStackNavigator.Screen name="Cart" component={Cart} />
+      <HomeStackNavigator.Screen name="Account" component={Account} />
+    </HomeStackNavigator.Navigator>
   );
 }
 
-// const CategoriesStack = createNativeStackNavigator();
 
-// function CategoriesStackScreen() {
-//   return (
-//     <CategoriesStack.Navigator screenOptions={{ headerShown: false }}>
-//       <CategoriesStack.Screen name="Categories" component={Categories} />
-//       <CategoriesStack.Screen name="Favourite" component={Favourite} />
-//       <CategoriesStack.Screen name="Cart" component={Cart} />
-//       <CategoriesStack.Screen name="Account" component={Account} />
-//     </CategoriesStack.Navigator>
-//   );
-// }
 
-const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (

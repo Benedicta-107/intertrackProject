@@ -282,10 +282,10 @@ const Favourite = () => {
     setSelectedItem(item);
     console.log('Pressed meals', item);
   };
-
+// incase of disorder remove the first view style.
   const renderSearch = () => {
     return (
-      <View>
+      <View style={{flex: 1}}>    //
             <View
                 style={{
                 flexDirection: 'row',
