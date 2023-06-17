@@ -46,7 +46,7 @@ const offers = [
     rating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
     noRating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
     place: 'Jumia',
-    type: 'Jollof Rice',
+    type: 'Jellof Rice',
     price: '$15.00',
   },
   {
@@ -69,7 +69,7 @@ const offers = [
   },
 ];
 
-
+// {/* WHEN THE IMAGE IS CLICKED ON TO LEAD TO THE MENU PAGE */}
 const renderOffers =({ item, navigation }) => {
   //const navigation = useNavigation();
   const handleOffers = () => {
@@ -110,8 +110,9 @@ const renderOffers =({ item, navigation }) => {
 };
 
 
-const Home = () => {
-  const navigation = useNavigation();
+const Home = ({item}) => {
+  const navigation = useNavigation(); //{/* WHEN THE IMAGE IS CLICKED ON TO LEAD TO THE MENU PAGE */}
+  console.log(item);
   function renderSearch() {
     return (
       <View>
@@ -260,6 +261,8 @@ const Home = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           /> */}
+
+          {/* WHEN THE IMAGE IS CLICKED ON TO LEAD TO THE MENU PAGE */}
           <FlatList
             data={offers}
             renderItem={({ item }) => renderOffers({ item, navigation })}

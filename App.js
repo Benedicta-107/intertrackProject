@@ -80,24 +80,8 @@ export default function App() {
           tabBarStyle: {
             height: 40,
             left: 2,
-            //borderWidth: 1,
             borderRadius: 15, // Set the border radius for the tabBar
-            // padding: 5,
-            //margin: 5,
             marginHorizontal: 5, // Set the horizontal margin for the tabBar
-            // marginVertical: 1
-            // tabBarButton: (props) => (
-            //   <TouchableOpacity
-            //     {...props}
-            //     style={[
-            //       props.focused && {
-            //         width:50,
-            //         borderRadius: 50, // Set the border radius for the active tabBar
-            //         marginHorizontal: 10, // Set the horizontal margin for the active tabBar
-            //       },
-            //     ]}
-            //   />
-            // ),
           },
         })}
         
