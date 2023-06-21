@@ -39,6 +39,13 @@ const offers = [
     place: 'Genesis',
     type: 'Fried Rice',
     price: '$12.00',
+    review: "See All Reviews",
+    describe: "Description",
+    description: "Vegetable soup is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
+    main: "Main ingredients:",
+    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
+    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
+    
   },
   {
     id: 2,
@@ -48,6 +55,12 @@ const offers = [
     place: 'Jumia',
     type: 'Jellof Rice',
     price: '$15.00',
+    review: "See All Reviews",
+    describe: "Description",
+    description: "Vegetable soup is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
+    main: "Main ingredients:",
+    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
+    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
   },
   {
     id: 3,
@@ -57,6 +70,12 @@ const offers = [
     place: 'Genesis',
     type: 'Boiled Yam',
     price: '$12.00',
+    review: "See All Reviews",
+    describe: "Description",
+    description: "Vegetable soup is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
+    main: "Main ingredients:",
+    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
+    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
   },
   {
     id: 4,
@@ -66,27 +85,37 @@ const offers = [
     place: 'Crunches',
     type: 'Vegetable Soup',
     price: '$16.00',
+    review: "See All Reviews",
+    describe: "Description",
+    description: "Vegetable soup is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
+    main: "Main ingredients:",
+    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
+    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
   },
 ];
 
 // {/* WHEN THE IMAGE IS CLICKED ON TO LEAD TO THE MENU PAGE */}
 const renderOffers =({ item, navigation }) => {
   //const navigation = useNavigation();
-  const handleOffers = () => {
+  const handleOffers = (id) => {
     console.log('Pressed offers', item);
     // Navigate to the Menu screen with the selected item's ID
     //navigation.navigate('Menu', { itemId: item.id });
-    navigation.navigate(Menu, { itemId: item.id});
+    //navigation.navigate(Menu, { itemId: item.id});
+    navigation.navigate('Menu', { itemId:id, offers});
   };
   
   return (
     <View style={{marginHorizontal: 10}}>
-      <TouchableOpacity onPress={handleOffers}>
+      {/* <TouchableOpacity onPress={handleOffers}> */}
+        <TouchableOpacity onPress={() => handleOffers(item.id)}>
           <Image
             source={{ uri: item.image }}
             style={{ width: 100, height: 100, borderRadius: 15 }}
           />
         </TouchableOpacity>
+        
+        
       <View style={{flexDirection: 'row'}}>
       <Image source={{uri: item.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
       <Image source={{uri: item.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
@@ -110,9 +139,9 @@ const renderOffers =({ item, navigation }) => {
 };
 
 
-const Home = ({item}) => {
-  const navigation = useNavigation(); //{/* WHEN THE IMAGE IS CLICKED ON TO LEAD TO THE MENU PAGE */}
-  console.log(item);
+const Home = ({navigation}) => {
+  //const navigation = useNavigation(); //{/* WHEN THE IMAGE IS CLICKED ON TO LEAD TO THE MENU PAGE */}
+  //console.log(item, 'Hello world');
   function renderSearch() {
     return (
       <View>
@@ -254,13 +283,13 @@ const Home = ({item}) => {
           {/* OFFERS */}
           <Text style={{color: '#1d8129', margin: 5, padding: 10, fontWeight: '500'}}>Today's Special Offers</Text>
 
-          {/* <FlatList
+           {/* <FlatList
           data={offers}
           renderItem={renderOffers}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
-          /> */}
+          />  */}
 
           {/* WHEN THE IMAGE IS CLICKED ON TO LEAD TO THE MENU PAGE */}
           <FlatList

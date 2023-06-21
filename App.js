@@ -7,7 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //import { createStackNavigator } from '@react-navigation/stack';
 // import {HomeStack, CategoriesStack} from "./navigation";
-import Home from './Screen/Home';
+import Home from './Screen/HomeScreen';
 import Categories from './Screen/Categories'
 import Favourite from './Screen/Favourite';
 import Cart from './Screen/Cart';
@@ -22,8 +22,8 @@ const Tab = createBottomTabNavigator();
 function StackScreen() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Home' component={Home} />
-      <Stack.Screen name='Menu' component={Menu} />
+      <Stack.Screen name='Home' component={Home} options={{header: () => null,  }} />
+      <Stack.Screen name='Menu' component={Menu} options={{header: () => null,  }} />
     </Stack.Navigator>
   );
 };

@@ -1,89 +1,14 @@
 import React, {useState} from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
     View,
     Text,
     Image,
+    Button,
+    TouchableOpacity,
+    
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import Cart from './Cart';
 
-const jellofRice = [
-{
-    id: 1,
-    image: 'https://i.pinimg.com/originals/b2/d5/0c/b2d50c4b7213a42ef4ca43f49dc78480.jpg',
-    name: "Jellof Rice",
-    place: "From Genesis",
-    rating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    noRtaing: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    price: '$15.00',
-    review: "See All Reviews",
-    describe: "Description",
-    description: "Jellof rice, is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
-    main: "Main ingredients:",
-    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
-    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
-},
-{
-    id: 1,
-    image: 'https://nkechiajaeroh.com/wp-content/uploads/2020/12/Nigerian-fried-rice-recipe-photo-3.jpg',
-    rating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    noRating: 'https://pic.onlinewebfonts.com/svg/img_530227.png', 
-    place: 'Genesis',
-    type: 'Fried Rice',
-    price: '$12.00',
-    review: "See All Reviews",
-    describe: "Description",
-    description: "Fried rice, is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
-    main: "Main ingredients:",
-    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
-    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
-  },
-  {
-    id: 2,
-    image: 'https://i.pinimg.com/originals/b2/d5/0c/b2d50c4b7213a42ef4ca43f49dc78480.jpg',
-    rating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    noRating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    place: 'Jumia',
-    type: 'Jellof Rice',
-    price: '$15.00',
-    review: "See All Reviews",
-    describe: "Description",
-    description: "Jellof rice, is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
-    main: "Main ingredients:",
-    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
-    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
-  },
-  {
-    id: 3,
-    image: 'https://farmhouzng.com/wp-content/uploads/2021/12/boiled-yam-with-egg-sauce.png',
-    rating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    noRating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    place: 'Genesis',
-    type: 'Boiled Yam',
-    price: '$12.00',
-    review: "See All Reviews",
-    describe: "Description",
-    description: "Boiled yam, is a yam dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
-    main: "Main ingredients:",
-    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
-    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
-  },
-  {
-    id: 4,
-    image: 'https://i.ytimg.com/vi/y-xNqPnMaYg/maxresdefault.jpg',
-    rating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    noRating: 'https://pic.onlinewebfonts.com/svg/img_530227.png',
-    place: 'Crunches',
-    type: 'Vegetable Soup',
-    price: '$16.00',
-    review: "See All Reviews",
-    describe: "Description",
-    description: "Vegetable soup is a rice dish from West Africa. The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a 		  	  single pot, although its ingredients and preparation methods vary across different regions",
-    main: "Main ingredients:",
-    ingredients: "Rice, tomatoes and tomato paste, onions, cooking oil, fish, lamb, goat meat, chicken, or beef",
-    like: 'https://img.icons8.com/?size=512&id=86721&format=png' ,
-  },
-]
 
 // const handleOrder = () => {
 //     // Handle the order placement logic here
@@ -91,74 +16,191 @@ const jellofRice = [
 //     navigation.navigate(Cart, { itemId: item.id});
 //   };
 
-const Menu = ({ route }) => {
-    //const [FoodItem, setFoodItem] = useState(jellofRice);
-    const {ItemId} = route.params;
-    const selectedItem = jellofRice.find(item => item.id === ItemId);
-    //const image = fetchImageDetails(ItemId);
-
-    return (
-        <View style={{flex:1, backgroundColor: '#fff',}}>
-            {/* HEADER */}
-            <View style={{width:50, height: 50, borderRadius:100, backgroundColor: '#055517', 
-                    left: 320, top:5, position:'relative'}}>
-                <Text style={{fontWeight:'500', fontSize: 30,  color: '#fff', 
-                     alignSelf:'center', top:5,}}>
-                    A
-                </Text>
-            </View>
-            {/* BODY */}
-            <View style={{position: 'absolute'}}>
-                <Image source={{ uri: selectedItem.image }} 
-                    style={{ width: 130, height: 130 }}
-                    resizeMode='cover' />
-                <Image source={{ uri: selectedItem.like }} 
-                    style={{ width: 20, height: 20, tintColor: '#000000' }}
-                    resizeMode='cover' />
-            </View>
-            <View style={{flexDirection:'column'}}>
-                <Text>
-                    {selectedItem.name}
-                </Text>
-                <Text>
-                    {selectedItem.place}
-                </Text>
-                <Text>
-                    {selectedItem.price}
-                </Text>
-                <Button title="Place Order" onPress={() => console.log('Place Order clicked')} />
-                <Text>
-                    {selectedItem.describe}
-                </Text>
-                <Text>
-                    {selectedItem.description}
-                </Text>
-                <Text>
-                    {selectedItem.main}
-                </Text>
-                <Text>
-                    {selectedItem.ingredients}
-                </Text>
-            </View>
-            <View style={{flexDirection: 'column'}}>
-                <View style={{flexDirection: 'row'}}>
-                    <Image source={{uri: item.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
-                    <Image source={{uri: item.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
-                    <Image source={{uri: item.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
-                    <Image source={{uri: item.noRating}} style={{width: 15, height:15, }}/>
-                    <Image source={{uri: item.noRating}} style={{width: 15, height:15, }}/>
+const Header = ({
+    containerStyle, title, titleStyle, leftComponent, rightComponent
+    }) => {
+        return (
+            <View 
+                style={{height:60, flexDirection:'row', ...containerStyle,}}
+            >
+                {
+                    leftComponent
+                }
+                <View
+                    style={{flex:1, alignItems: 'center', justifyContent: 'center'}}
+                >
+                    <Text style={{fontSize: 24, ...titleStyle}}>
+                        {title}
+                    </Text>
                 </View>
-                <Text>
-                    {selectedItem.review}
-                </Text> 
-            </View>           
+                {
+                    rightComponent
+                }
+            </View>
+        );
+};
 
-            
+const IconButton = ({containerStyle, icon, iconStyle, onPress}) => {
+    return (
+        <TouchableOpacity
+            style={{...containerStyle}} onPress={onPress}
+        >
+            <Image
+                source={{uri: 'https://img.icons8.com/?size=512&id=PXS7hSwrozS5&format=png'}}
+                style={{width:30, height:30, ...iconStyle}}
+            />
+        </TouchableOpacity>
+    );
+};
+const Menu = ({ route }) => {
+    const navigation = useNavigation();
+    
+    const { itemId, offers } = route.params || {}; // Add the conditional check and provide a default empty object
+    console.log('itemId:', itemId); // Check the value of ItemId
+    console.log('offers:', offers)
+    console.log('Benedicta', route)
+    const [quantity, setQuantity] = useState(1);
 
-            {/* DETAILS */}
-            <Text>Menu</Text>
-        </View>
-    )
-}
-
+    function renderHeader(){
+        return(
+            <Header
+                title="Menu"
+                titleStyle={{ justifyContent: 'center', fontSize: 24, fontWeight: 'bold', color: '#1d8129'}}
+                containerStyle={{
+                    height: 70,
+                    paddingVertical: 10,
+                    paddingHorizontal: 12,
+                    marginHorizontal: 5,
+                    marginTop: 25,
+                    backgroundColor: '#E4F0E8',
+                    borderWidth: 0.5,
+                    borderColor: '#1d8129',
+                    alignItems: "center",
+                    justifyContent: 'center',
+                    borderRadius: 15,
+                }}
+                leftComponent={
+                    <IconButton
+                        icon= 'https://img.icons8.com/?size=512&id=PXS7hSwrozS5&format=png'
+                        containerStyle={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            //margin: 15
+                        }}
+                        iconStyle={{
+                            width: 40,
+                            height: 40,
+                            tintColor: '#000000'
+                        }}
+                       onPress={() => navigation.navigate('Home')}
+                    />
+                }
+                rightComponent={
+                    <TouchableOpacity
+                        style={{backgroundColor:'#1d8129',height:50, width:50, borderRadius:100, paddingVertical:10, paddingHorizontal:10,}}
+                        onPress={() => navigation.navigate('Home')}
+                        >
+                            <Text style={{color: '#fff', fontSize:24, fontWeight: 'bold', textAlign: 'center'}}>
+                                A
+                            </Text>
+                        </TouchableOpacity>
+                }
+            />
+        );
+    };
+    
+    if (offers) {
+        const selectedItem = offers.find((item) => item.id === itemId);
+        if (selectedItem) {
+            return (
+                <View style={{backgroundColor: '#fff',}}>
+                    {/* HEADER */}
+                    {renderHeader()}
+                                    {/* BODY */}
+                    <View >
+                        <Image source={{ uri: selectedItem.image }} 
+                            style={{ width: 400, height: 150, top:5, marginHorizontal:5,  }}
+                            resizeMode='cover' />
+                        <Image source={{ uri: selectedItem.like }} 
+                            style={{ width: 50, height: 50, tintColor: '#000000',
+                                bottom:150, left:350, }}
+                            resizeMode='cover' />
+                    </View>
+                    <View style={{flexDirection:'column', marginHorizontal: 5,}}>
+                        <Text style={{color:'#1d8129', fontSize: 20, fontWeight:'600'}}>
+                            {selectedItem.type}
+                        </Text>
+                        <Text style={{fontSize:16, fontWeight: '700',}}>
+                            {selectedItem.place}
+                        </Text>
+                        <Text style={{fontSize:16, fontWeight: '900',}}>
+                            {selectedItem.price}
+                        </Text>
+                        {/* <Button title="Place Order" onPress={() => console.log('Place Order clicked')} /> */}
+                        <Text>
+                            {selectedItem.describe}
+                        </Text>
+                        <Text>
+                            {selectedItem.description}
+                        </Text>
+                        <Text>
+                            {selectedItem.main}
+                        </Text>
+                        <Text>
+                            {selectedItem.ingredients}
+                        </Text>
+                    </View>
+                    <View style={{flexDirection: 'column', bottom:250, left: 300,}}>
+                        <View style={{flexDirection: 'row', }}>
+                            <Image source={{uri: selectedItem.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
+                            <Image source={{uri: selectedItem.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
+                            <Image source={{uri: selectedItem.rating}} style={{width: 15, height:15, tintColor: '#1d8129'}}/>
+                            <Image source={{uri: selectedItem.noRating}} style={{width: 15, height:15, }}/>
+                            <Image source={{uri: selectedItem.noRating}} style={{width: 15, height:15, }}/>
+                        </View>
+                        <Text>
+                            {selectedItem.review}
+                        </Text> 
+                    </View>           
+        
+                    
+        
+                    {/* DETAILS */}
+                    <Text>Menu</Text>
+                    <View style={{}}>
+                        <TouchableOpacity style={{backgroundColor: '#1d8129', width:20, height:20, borderRadius:100, }}
+                            onPress={() =>{
+                                if (quantity === 1) 
+                                {
+                                    return;
+                                } else 
+                                {
+                                    setQuantity(quantity-1)
+                                }
+                                }}
+                        >
+                            <Text style={{fontSize:40, textAlign: 'center', fontWeight:'bold', padding:5,}}>
+                                -
+                            </Text>
+                        </TouchableOpacity>
+                        <Text>
+                            {quantity}
+                        </Text>
+                        <Button title='+' onPress={() =>{
+                            setQuantity(quantity+1)
+                            }}
+                        />
+                    </View>
+                </View>
+            );
+          };
+          return (
+            <View>
+              <Text>Item not found.</Text>
+            </View>
+          );
+        };
+        }
+        
 export default Menu;
+ 
