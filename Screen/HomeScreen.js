@@ -1,8 +1,8 @@
 //import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Image, Text, View, ScrollView, TextInput, TouchableOpacity, onPress, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Menu from './Menu';
+import { StyleSheet, Image, Text, View, ScrollView, TextInput, 
+          SectionList, TouchableOpacity, onPress, FlatList } from 'react-native';
+import Categories from './Categories';
 
 const categories = [
   {id: 1, name: 'Rice'},
@@ -300,18 +300,21 @@ const Home = ({navigation}) => {
             showsHorizontalScrollIndicator={false}
           />
 
-      {/* <StatusBar style="auto" /> */}
+        {/* <StatusBar style="auto" /> */}
+      <Categories/>
     </ScrollView>
   );
-}
+};
+
+
 
  const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
+   container: {
+    flex: 1,
 //     backgroundColor: '#fff',
 //     alignItems: 'center',
 //     justifyContent: 'center',
-//   },
+   },
 });
 
 export default Home;

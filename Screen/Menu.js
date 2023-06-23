@@ -6,6 +6,7 @@ import {
     Image,
     Button,
     TouchableOpacity,
+    StyleSheet,
     
 } from 'react-native';
 
@@ -168,7 +169,9 @@ const Menu = ({ route }) => {
                     {/* DETAILS */}
                     <Text>Menu</Text>
                     <View style={{}}>
-                        <TouchableOpacity style={{backgroundColor: '#1d8129', width:20, height:20, borderRadius:100, }}
+                        <Button 
+                            title='-'
+                            style={styles.button}
                             onPress={() =>{
                                 if (quantity === 1) 
                                 {
@@ -178,11 +181,7 @@ const Menu = ({ route }) => {
                                     setQuantity(quantity-1)
                                 }
                                 }}
-                        >
-                            <Text style={{fontSize:40, textAlign: 'center', fontWeight:'bold', padding:5,}}>
-                                -
-                            </Text>
-                        </TouchableOpacity>
+                        />
                         <Text>
                             {quantity}
                         </Text>
@@ -201,6 +200,17 @@ const Menu = ({ route }) => {
           );
         };
         }
+
+        const styles = StyleSheet.create({
+            button: {
+            width: 100,
+            height: 50,
+            backgroundColor: '#1d8129',
+            borderRadius: 8,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        })
         
 export default Menu;
  
