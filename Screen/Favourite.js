@@ -126,6 +126,7 @@ const favouritePlace = [
 const renderFavouritePlace = ({ item }) => {
   if (item.id === 1) {
     return (
+      
       <View style={{ flexDirection: 'row', marginTop: 10, borderWidth: 2, borderColor: '#B1B1B1', borderRadius: 15, height:95, }}>
         <Image source={{ uri: item.image }} style={{ width: 130 }} />
         <Text style={{ margin: 10, padding: 5 , bottom:10, fontSize:15, fontWeight: 'bold', color: '#1d8129'}}>
